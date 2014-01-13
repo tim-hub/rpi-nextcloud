@@ -28,4 +28,6 @@ fi
 # Disabled for now until this is resolved (lol): https://github.com/dotcloud/docker/issues/2267
 
 /usr/bin/mysqld_safe &
-/usr/sbin/apache2ctl -D FOREGROUND
+#/usr/sbin/apache2ctl -D FOREGROUND
+/usr/sbin/apache2ctl -k start
+/bin/bash

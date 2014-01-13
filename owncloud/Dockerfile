@@ -1,13 +1,14 @@
-FROM ubuntu:12.04
-MAINTAINER Nick Jones "nick@dischord.org"
-RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" >> /etc/apt/sources.list
+FROM resin/rpi-raspbian:latest
+MAINTAINER Søren Schmidt Kriegbaum "comzone5@gmail.com"
+#RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" >> /etc/apt/sources.list
 RUN apt-get -y update
 
 RUN dpkg-divert --local --rename --add /sbin/initctl
-RUN ln -s /bin/true /sbin/initctl
+#RUN ln -s /bin/true /sbin/initctl
 
+RUN apt-get install -y locales dialog
 RUN locale-gen en_US en_US.UTF-8
-RUN dpkg-reconfigure locales
+RUN dpkg-reconfigure -f noninteractive locales
 
 RUN echo "mysql-server-5.5 mysql-server/root_password password root123" | debconf-set-selections
 RUN echo "mysql-server-5.5 mysql-server/root_password_again password root123" | debconf-set-selections
@@ -20,18 +21,26 @@ RUN wget -q -O - http://download.owncloud.org/community/owncloud-6.0.0a.tar.bz2 
 
 RUN mkdir /etc/apache2/ssl
 
+RUN echo "test1"
+
 ADD resources/cfgmysql.sh /tmp/
 RUN chmod +x /tmp/cfgmysql.sh
 RUN /tmp/cfgmysql.sh
 RUN rm /tmp/cfgmysql.sh
 
 ADD resources/001-owncloud.conf /etc/apache2/sites-available/
+ADD resources/000-default.conf /etc/apache2/sites-available/
+
 ADD resources/start.sh /
 
 RUN a2ensite 001-owncloud.conf
+RUN a2ensite 000-default.conf
 RUN a2enmod rewrite ssl
 
 RUN chown -R www-data:www-data /var/www/owncloud
 RUN chmod +x /start.sh
+
+EXPOSE 80
+EXPOSE 443
 
 CMD ["/start.sh"]
