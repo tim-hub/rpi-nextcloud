@@ -21,8 +21,6 @@ RUN wget -q -O - http://download.owncloud.org/community/owncloud-6.0.0a.tar.bz2 
 
 RUN mkdir /etc/apache2/ssl
 
-RUN echo "test1"
-
 ADD resources/cfgmysql.sh /tmp/
 RUN chmod +x /tmp/cfgmysql.sh
 RUN /tmp/cfgmysql.sh
