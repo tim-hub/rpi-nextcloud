@@ -1,6 +1,7 @@
 FROM resin/rpi-raspbian:latest
 MAINTAINER Søren Schmidt Kriegbaum "comzone5@gmail.com"
 #RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" >> /etc/apt/sources.list
+RUN echo "run"
 RUN apt-get -y update 
 
 RUN dpkg-divert --local --rename --add /sbin/initctl
