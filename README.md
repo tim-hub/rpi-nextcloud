@@ -21,5 +21,5 @@ Se more at the Docker Index: https://index.docker.io/u/comzone/rpi-owncloud6/
 Read about docker at http://docker.io
 
 This project is inspired by:  
-http://dischord.org/blog/2013/07/10/docker-and-owncloud/
-http://dischord.org/blog/2013/08/13/docker-and-owncloud-part-2/
+http://dischord.org/2013/07/10/docker-and-owncloud/
+http://dischord.org/2013/08/13/docker-and-owncloud-part-2/
