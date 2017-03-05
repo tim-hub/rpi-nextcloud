@@ -1,0 +1,23 @@
+Run the container
+docker run -d -p 80:80 -p 443:443 comzone/rpi-owncloud:latest
+
+# Delete containers and images
+docker rmi $(docker images -q)
+docker rm $(docker ps -a -q)
+
+Run commands inside a container
+docker run -i -t comzone/rpi-owncloud:latest /usr/bin/supervisord
+
+# Git..
+git config --global user.name ""
+git config --global user.email ""
+git config --global credential.helper cache
+git clone git://github.com/comzone/rpi-owncloud.git
+git add resources/start.sh
+git commit -m "Fixing supervisord configuration"
+git config --global push.default matching
+git push https://github.com/comzone/rpi-owncloud.git
+
+# Pushing the images
+docker login
+docker push comzone/rpi-owncloud:latest
