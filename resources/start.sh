@@ -30,5 +30,5 @@ fi
 #/usr/bin/mysqld_safe &
 #/usr/sbin/apache2ctl -D FOREGROUND
 #/usr/sbin/apache2ctl -k start
-/usr/bin/supervisord
+/usr/bin/supervisord -c /etc/supervisor/conf.d/lamp.conf
 /bin/bash
