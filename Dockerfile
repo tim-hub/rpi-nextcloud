@@ -1,5 +1,5 @@
 FROM resin/rpi-raspbian:latest
-MAINTAINER Søren Schmidt Kriegbaum "github.com/tim-hub"
+MAINTAINER Tim "github.com/tim-hub"
 #RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" >> /etc/apt/sources.list
 
 RUN apt-get -y update 
